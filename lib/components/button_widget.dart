@@ -12,7 +12,7 @@ class ButtonWidget extends StatelessWidget {
 
   final String btnText;
   final Color btnColor;
-  final VoidCallback btnAction;
+  final VoidCallback? btnAction;
   final bool isLoading;
 
   @override

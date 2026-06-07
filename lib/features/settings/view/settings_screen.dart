@@ -69,6 +69,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
               );
             },
           ),
+          SettingsTileWidget(
+            iconData: CupertinoIcons.info_circle,
+            iconText: '1.0.0(1)',
+          ),
         ],
       ),
     );

@@ -17,6 +17,12 @@ class UtilityFile {
     return formattedDate;
   }
 
+  static dynamic workDuration(DateTime workStartDate) {
+    final currentDate = DateTime.now();
+    final days = currentDate.difference(workStartDate).inDays;
+    return days;
+  }
+
   static dynamic showSnackBar(String message, BuildContext context) {
     return ScaffoldMessenger.of(
       context,

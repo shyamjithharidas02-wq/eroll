@@ -8,7 +8,9 @@ import 'package:eroll/features/home/view/components/report_card_widget.dart';
 import 'package:eroll/features/home/view/components/search_widget.dart';
 import 'package:eroll/features/home/view/components/shortcut_menu.dart';
 import 'package:eroll/features/upcoming_event/view/upcoming_event_banner.dart';
+import 'package:eroll/features/works/work_site/provider/view_work_site_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -74,12 +76,26 @@ class _HomeScreenState extends State<HomeScreen> {
                 // InProgress Work Card
                 SizedBox(
                   height: 170,
-                  child: ListView.builder(
-                    itemCount: 5,
-                    shrinkWrap: true,
-                    itemBuilder: (context, index) => InProgressWorkCardWidget(),
-                    scrollDirection: Axis.horizontal,
-                    padding: EdgeInsets.only(right: 20),
+                  child: Consumer<ViewWorkSiteProvider>(
+                    builder: (context, viewWorkProvider, _) {
+                      if (viewWorkProvider.isLoading) {
+                        return Center(child: CircularProgressIndicator());
+                      }
+
+                      return ListView.builder(
+                        itemCount: viewWorkProvider.inProgressWorkList.length,
+                        shrinkWrap: true,
+                        itemBuilder: (context, index) {
+                          final inProgressWorks =
+                              viewWorkProvider.inProgressWorkList[index];
+                          return InProgressWorkCardWidget(
+                            inProgressWorks: inProgressWorks,
+                          );
+                        },
+                        scrollDirection: Axis.horizontal,
+                        padding: EdgeInsets.only(right: 20),
+                      );
+                    },
                   ),
                 ),
                 SizedBox(height: 30),

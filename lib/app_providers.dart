@@ -1,3 +1,4 @@
+import 'package:eroll/features/attendance/add_attendance/provider/add_attendance_provider.dart';
 import 'package:eroll/features/works/create_work/provider/create_work_provider.dart';
 import 'package:eroll/features/works/update_work/provider/update_work_provider.dart';
 import 'package:eroll/features/works/work_site/provider/view_work_site_provider.dart';
@@ -15,6 +16,7 @@ class AppProviders {
       ChangeNotifierProvider(create: (_) => CreateWorkProvider()),
       ChangeNotifierProvider(create: (_) => ViewWorkSiteProvider()),
       ChangeNotifierProvider(create: (_) => UpdateWorkProvider()),
+      ChangeNotifierProvider(create: (_) => AddAttendanceProvider()),
     ];
   }
 }

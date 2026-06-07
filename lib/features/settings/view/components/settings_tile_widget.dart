@@ -5,12 +5,12 @@ class SettingsTileWidget extends StatelessWidget {
     super.key,
     required this.iconData,
     required this.iconText,
-    required this.onTap,
+    this.onTap,
   });
 
   final IconData iconData;
   final String iconText;
-  final VoidCallback onTap;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
