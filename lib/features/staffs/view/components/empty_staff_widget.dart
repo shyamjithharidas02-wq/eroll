@@ -15,7 +15,7 @@ class EmptyStaffWidget extends StatelessWidget {
         children: [
           Image.asset(image, height: 300),
           SizedBox(height: 15),
-          Text(label),
+          Text(label, style: TextStyle(fontWeight: FontWeight.w700)),
         ],
       ),
     );

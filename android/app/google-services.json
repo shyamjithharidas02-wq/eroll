@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "629432091656",
-    "project_id": "eroll-ems",
-    "storage_bucket": "eroll-ems.firebasestorage.app"
+    "project_number": "552928492469",
+    "project_id": "e-roll-8270a",
+    "storage_bucket": "e-roll-8270a.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:629432091656:android:cbca0787740776fbb37dbd",
+        "mobilesdk_app_id": "1:552928492469:android:1ab3c221f39f056281b7fc",
         "android_client_info": {
           "package_name": "com.example.eroll"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyBx9g8kXSKfpMyfwHP8mDP5o496IPy8PFc"
+          "current_key": "AIzaSyDMSvB8v74xaIADiQHqImDHm76g751Dz_c"
         }
       ],
       "services": {

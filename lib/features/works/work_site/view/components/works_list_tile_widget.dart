@@ -48,6 +48,7 @@ class WorksListTileWidget extends StatelessWidget {
               Text(
                 'No $workType Works, Complete some works to see them here.',
                 textAlign: TextAlign.center,
+                style: TextStyle(fontWeight: FontWeight.w700),
               ),
             ],
           ),

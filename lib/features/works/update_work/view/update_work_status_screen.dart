@@ -109,203 +109,206 @@ class _UpdateWorkStatusScreenState extends State<UpdateWorkStatusScreen> {
             borderRadius: BorderRadius.circular(12),
           ),
           child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                // Work/Place
-                Container(
-                  decoration: BoxDecoration(
-                    border: Border(
-                      bottom: BorderSide(color: AppColors.grey400),
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  // Work/Place
+                  Container(
+                    decoration: BoxDecoration(
+                      border: Border(
+                        bottom: BorderSide(color: AppColors.grey400),
+                      ),
+                    ),
+                    child: TextField(
+                      minLines: 1,
+                      maxLines: 2,
+                      controller: siteNameController,
+                      cursorColor: AppColors.primaryColor,
+                      decoration: InputDecoration(
+                        border: InputBorder.none,
+                        focusedBorder: InputBorder.none,
+                        hintText: 'Work/Place Name',
+                      ),
                     ),
                   ),
-                  child: TextField(
-                    minLines: 1,
-                    maxLines: 2,
-                    controller: siteNameController,
-                    cursorColor: AppColors.primaryColor,
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
-                      focusedBorder: InputBorder.none,
-                      hintText: 'Work/Place Name',
+
+                  // Work Description
+                  Container(
+                    decoration: BoxDecoration(
+                      border: Border(
+                        bottom: BorderSide(color: AppColors.grey400),
+                      ),
+                    ),
+                    child: TextField(
+                      maxLines: 8,
+                      controller: descriptionController,
+                      cursorColor: AppColors.primaryColor,
+                      decoration: InputDecoration(
+                        border: InputBorder.none,
+                        focusedBorder: InputBorder.none,
+                        hintText: 'Description',
+                      ),
                     ),
                   ),
-                ),
 
-                // Work Description
-                Container(
-                  decoration: BoxDecoration(
-                    border: Border(
-                      bottom: BorderSide(color: AppColors.grey400),
-                    ),
+                  // Started Date
+                  WorkStartDateWidget(
+                    dateLabel: 'Start Date',
+                    startDate: workCreatedDate!,
                   ),
-                  child: TextField(
-                    maxLines: 8,
-                    controller: descriptionController,
-                    cursorColor: AppColors.primaryColor,
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
-                      focusedBorder: InputBorder.none,
-                      hintText: 'Description',
+
+                  // End Date
+                  WorkEndDateWidget(),
+
+                  // Work Status
+                  Container(
+                    padding: EdgeInsets.symmetric(vertical: 20),
+                    decoration: BoxDecoration(
+                      border: Border(
+                        bottom: BorderSide(color: AppColors.grey400),
+                      ),
                     ),
-                  ),
-                ),
+                    child: Row(
+                      children: [
+                        Icon(Icons.alarm),
+                        SizedBox(width: 10),
+                        Text('Status'),
+                        Spacer(),
+                        Expanded(
+                          child: Consumer<UpdateWorkProvider>(
+                            builder:
+                                (context, provider, _) =>
+                                    DropdownButtonHideUnderline(
+                                      child: DropdownButtonFormField<String>(
+                                        value: status!.label,
+                                        items:
+                                            WorkStatus.values.map((element) {
+                                              return DropdownMenuItem<String>(
+                                                value: element.label,
+                                                child: Text(element.label),
+                                              );
+                                            }).toList(),
+                                        onChanged: (value) {
+                                          status = WorkStatus.values.firstWhere(
+                                            (element) => element.label == value,
+                                            orElse: () => WorkStatus.pending,
+                                          );
 
-                // Started Date
-                WorkStartDateWidget(
-                  dateLabel: 'Start Date',
-                  startDate: workCreatedDate!,
-                ),
-
-                // End Date
-                WorkEndDateWidget(),
-
-                // Work Status
-                Container(
-                  padding: EdgeInsets.symmetric(vertical: 20),
-                  decoration: BoxDecoration(
-                    border: Border(
-                      bottom: BorderSide(color: AppColors.grey400),
-                    ),
-                  ),
-                  child: Row(
-                    children: [
-                      Icon(Icons.alarm),
-                      SizedBox(width: 10),
-                      Text('Status'),
-                      Spacer(),
-                      Expanded(
-                        child: Consumer<UpdateWorkProvider>(
-                          builder:
-                              (context, provider, _) =>
-                                  DropdownButtonHideUnderline(
-                                    child: DropdownButtonFormField<String>(
-                                      value: status!.label,
-                                      items:
-                                          WorkStatus.values.map((element) {
-                                            return DropdownMenuItem<String>(
-                                              value: element.label,
-                                              child: Text(element.label),
-                                            );
-                                          }).toList(),
-                                      onChanged: (value) {
-                                        status = WorkStatus.values.firstWhere(
-                                          (element) => element.label == value,
-                                          orElse: () => WorkStatus.pending,
-                                        );
-
-                                        provider.setUpdateWorkStatus(
-                                          status!.name,
-                                        );
-                                      },
-                                      decoration: InputDecoration.collapsed(
-                                        hintText: '',
+                                          provider.setUpdateWorkStatus(
+                                            status!.name,
+                                          );
+                                        },
+                                        decoration: InputDecoration.collapsed(
+                                          hintText: '',
+                                        ),
+                                        hint: Text('Status'),
+                                        dropdownColor: Colors.grey.shade100,
+                                        borderRadius: BorderRadius.circular(12),
                                       ),
-                                      hint: Text('Status'),
-                                      dropdownColor: Colors.grey.shade100,
-                                      borderRadius: BorderRadius.circular(12),
                                     ),
-                                  ),
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
-                ),
-
-                // Assigned People List
-                Container(
-                  padding: EdgeInsets.symmetric(vertical: 20),
-                  decoration: BoxDecoration(
-                    border: Border(
-                      bottom: BorderSide(color: AppColors.grey400),
+                      ],
                     ),
                   ),
-                  child: Consumer<UpdateWorkProvider>(
-                    builder:
-                        (context, updateProvider, _) => Row(
-                          children: [
-                            Icon(CupertinoIcons.person_2),
-                            SizedBox(width: 10),
-                            Text('Team Members'),
-                            Spacer(),
-                            GestureDetector(
-                              onTap: () => isInitialized ? showPopup() : null,
-                              child: Row(
-                                children: [
-                                  Text(
-                                    '${updateProvider.selectedStaffs.length} Members',
-                                  ),
-                                  Icon(
-                                    Icons.keyboard_double_arrow_down_rounded,
-                                  ),
-                                ],
+
+                  // Assigned People List
+                  Container(
+                    padding: EdgeInsets.symmetric(vertical: 20),
+                    decoration: BoxDecoration(
+                      border: Border(
+                        bottom: BorderSide(color: AppColors.grey400),
+                      ),
+                    ),
+                    child: Consumer<UpdateWorkProvider>(
+                      builder:
+                          (context, updateProvider, _) => Row(
+                            children: [
+                              Icon(CupertinoIcons.person_2),
+                              SizedBox(width: 10),
+                              Text('Team Members'),
+                              Spacer(),
+                              GestureDetector(
+                                onTap: () => isInitialized ? showPopup() : null,
+                                child: Row(
+                                  children: [
+                                    Text(
+                                      '${updateProvider.selectedStaffs.length} Members',
+                                    ),
+                                    Icon(
+                                      Icons.keyboard_double_arrow_down_rounded,
+                                    ),
+                                  ],
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
+                    ),
+                  ),
+
+                  Consumer<UpdateWorkProvider>(
+                    builder:
+                        (context, updateProvider, child) => CheckboxListTile(
+                          title: Text('Completed work'),
+                          value: updateProvider.isWorkCompletedFlag,
+                          onChanged: (value) {
+                            updateProvider.workCompletedStatus(true);
+                          },
+                          controlAffinity: ListTileControlAffinity.leading,
+                          contentPadding: EdgeInsets.zero,
+                          checkColor: AppColors.white,
+                          activeColor: AppColors.primaryColor,
                         ),
                   ),
-                ),
 
-                Consumer<UpdateWorkProvider>(
-                  builder:
-                      (context, updateProvider, child) => CheckboxListTile(
-                        title: Text('Completed work'),
-                        value: updateProvider.isWorkCompletedFlag,
-                        onChanged: (value) {
-                          updateProvider.workCompletedStatus(true);
-                        },
-                        controlAffinity: ListTileControlAffinity.leading,
-                        contentPadding: EdgeInsets.zero,
-                        checkColor: AppColors.white,
-                        activeColor: AppColors.primaryColor,
-                      ),
-                ),
+                  SizedBox(height: 40),
 
-                SizedBox(height: 40),
-
-                // Button
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 20),
-                  child: Consumer<UpdateWorkProvider>(
-                    builder: (context, updateProvider, _) {
-                      return ButtonWidget(
-                        btnText: 'Update',
-                        btnColor: AppColors.primaryColor,
-                        isLoading: updateProvider.isLoading,
-                        btnAction: () async {
-                          await updateProvider.updateWork(
-                            workId: widget.workModel.workId,
-                            title: siteNameController.text,
-                            description: descriptionController.text,
-                            startDate: workCreatedDate!,
-                            status: status!.name,
-                            endDate: updateProvider.endDate,
-                            isWorkCompleted: updateProvider.isWorkCompletedFlag,
-                          );
-
-                          if (!mounted) return;
-
-                          // Optionally show success message
-                          WidgetsBinding.instance.addPostFrameCallback((
-                            _,
-                          ) async {
-                            UtilityFile.showSnackBar(
-                              'Work updated successfully',
-                              context,
+                  // Button
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 20),
+                    child: Consumer<UpdateWorkProvider>(
+                      builder: (context, updateProvider, _) {
+                        return ButtonWidget(
+                          btnText: 'Update',
+                          btnColor: AppColors.primaryColor,
+                          isLoading: updateProvider.isLoading,
+                          btnAction: () async {
+                            await updateProvider.updateWork(
+                              workId: widget.workModel.workId,
+                              title: siteNameController.text,
+                              description: descriptionController.text,
+                              startDate: workCreatedDate!,
+                              status: status!.name,
+                              endDate: updateProvider.endDate,
+                              isWorkCompleted:
+                                  updateProvider.isWorkCompletedFlag,
                             );
-                            Navigator.pop(context);
 
-                            await Provider.of<ViewWorkSiteProvider>(
-                              context,
-                              listen: false,
-                            ).fetchCreatedWorks();
-                          });
-                        },
-                      );
-                    },
+                            if (!mounted) return;
+
+                            // Optionally show success message
+                            WidgetsBinding.instance.addPostFrameCallback((
+                              _,
+                            ) async {
+                              UtilityFile.showSnackBar(
+                                'Work updated successfully',
+                                context,
+                              );
+                              Navigator.pop(context);
+
+                              await Provider.of<ViewWorkSiteProvider>(
+                                context,
+                                listen: false,
+                              ).fetchCreatedWorks();
+                            });
+                          },
+                        );
+                      },
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),

@@ -24,6 +24,7 @@ class MyApp extends StatelessWidget {
       providers: AppProviders.buildProviders(),
       child: MaterialApp(
         theme: AppThemes.lightTheme,
+        //showPerformanceOverlay: true,
         debugShowCheckedModeBanner: false,
         initialRoute: AppRouteNames.splashScreen,
         onGenerateRoute: AppRouteConfig.onGenerateRoute,

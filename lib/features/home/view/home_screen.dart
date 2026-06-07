@@ -21,7 +21,24 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   @override
+  void initState() {
+    super.initState();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      await Provider.of<ViewWorkSiteProvider>(
+        context,
+        listen: false,
+      ).fetchCreatedWorks();
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final viewWorkProvider = Provider.of<ViewWorkSiteProvider>(
+      context,
+      listen: false,
+    );
+
     return Scaffold(
       appBar: AppBar(
         centerTitle: false,
@@ -63,41 +80,41 @@ class _HomeScreenState extends State<HomeScreen> {
                   pRight: 20,
                   child: SearchWidget(),
                 ),
-                SizedBox(height: 30),
 
                 // InProgress Work Title
-                CustomPaddingWidget(
-                  pLeft: 20,
-                  pRight: 20,
-                  child: InProgressTitleWidget(),
-                ),
+                if (viewWorkProvider.inProgressWorkList.isNotEmpty) ...[
+                  SizedBox(height: 30),
+                  CustomPaddingWidget(
+                    pLeft: 20,
+                    pRight: 20,
+                    child: InProgressTitleWidget(),
+                  ),
+                ],
                 SizedBox(height: 10),
 
                 // InProgress Work Card
-                SizedBox(
-                  height: 170,
-                  child: Consumer<ViewWorkSiteProvider>(
+                if (viewWorkProvider.inProgressWorkList.isNotEmpty)
+                  Consumer<ViewWorkSiteProvider>(
                     builder: (context, viewWorkProvider, _) {
-                      if (viewWorkProvider.isLoading) {
-                        return Center(child: CircularProgressIndicator());
-                      }
+                      return SizedBox(
+                        height: 170,
+                        child: ListView.builder(
+                          itemCount: viewWorkProvider.inProgressWorkList.length,
+                          shrinkWrap: true,
+                          itemBuilder: (context, index) {
+                            final inProgressWorks =
+                                viewWorkProvider.inProgressWorkList[index];
 
-                      return ListView.builder(
-                        itemCount: viewWorkProvider.inProgressWorkList.length,
-                        shrinkWrap: true,
-                        itemBuilder: (context, index) {
-                          final inProgressWorks =
-                              viewWorkProvider.inProgressWorkList[index];
-                          return InProgressWorkCardWidget(
-                            inProgressWorks: inProgressWorks,
-                          );
-                        },
-                        scrollDirection: Axis.horizontal,
-                        padding: EdgeInsets.only(right: 20),
+                            return InProgressWorkCardWidget(
+                              inProgressWorks: inProgressWorks,
+                            );
+                          },
+                          scrollDirection: Axis.horizontal,
+                          padding: EdgeInsets.only(right: 20),
+                        ),
                       );
                     },
                   ),
-                ),
                 SizedBox(height: 30),
 
                 // Shortcut Menu

@@ -45,6 +45,7 @@ class _InProgressTitleWidgetState extends State<InProgressTitleWidget> {
                     color: AppColors.primaryColor,
                     shape: BoxShape.circle,
                   ),
+
                   child: Text(
                     viewWorkProvider.inProgressWorkList.length.toString(),
                     style: TextStyle(

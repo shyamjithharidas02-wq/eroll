@@ -17,10 +17,7 @@ import 'package:flutter/foundation.dart'
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      throw UnsupportedError(
-        'DefaultFirebaseOptions have not been configured for web - '
-        'you can reconfigure this by running the FlutterFire CLI again.',
-      );
+      return web;
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
@@ -50,20 +47,30 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyBx9g8kXSKfpMyfwHP8mDP5o496IPy8PFc',
-    appId: '1:629432091656:android:cbca0787740776fbb37dbd',
-    messagingSenderId: '629432091656',
-    projectId: 'eroll-ems',
-    storageBucket: 'eroll-ems.firebasestorage.app',
+    apiKey: 'AIzaSyDMSvB8v74xaIADiQHqImDHm76g751Dz_c',
+    appId: '1:552928492469:android:1ab3c221f39f056281b7fc',
+    messagingSenderId: '552928492469',
+    projectId: 'e-roll-8270a',
+    storageBucket: 'e-roll-8270a.firebasestorage.app',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyB-7t2NfnMqWxEFmvul4KHcu-slaF7pt4Y',
-    appId: '1:629432091656:ios:d2eae830e45df2f4b37dbd',
-    messagingSenderId: '629432091656',
-    projectId: 'eroll-ems',
-    storageBucket: 'eroll-ems.firebasestorage.app',
+    apiKey: 'AIzaSyC9KRsdbUnLoiX-0fX5shT9Z2BSh1cxFSQ',
+    appId: '1:552928492469:ios:a2448989fc0f63d781b7fc',
+    messagingSenderId: '552928492469',
+    projectId: 'e-roll-8270a',
+    storageBucket: 'e-roll-8270a.firebasestorage.app',
     iosBundleId: 'com.example.eroll',
+  );
+
+  static const FirebaseOptions web = FirebaseOptions(
+    apiKey: 'AIzaSyAPQAjE_-JQiTlZsWl4wMHDu8ojRj_uEsw',
+    appId: '1:552928492469:web:aff180e3a560dd3f81b7fc',
+    messagingSenderId: '552928492469',
+    projectId: 'e-roll-8270a',
+    authDomain: 'e-roll-8270a.firebaseapp.com',
+    storageBucket: 'e-roll-8270a.firebasestorage.app',
+    measurementId: 'G-P86BY4WBZC',
   );
 
 }
