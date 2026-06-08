@@ -1,4 +1,4 @@
-class ResourcePath {
+class AssetPath {
   // ---- Images Path ----//
   static String profileCircleVector = 'lib/assets/images/person.png';
   static String payrollImage = 'lib/assets/images/payroll.png';

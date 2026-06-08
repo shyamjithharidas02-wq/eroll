@@ -1,4 +1,4 @@
-import 'package:eroll/core/routes/app_route_names.dart';
+import 'package:eroll/app/routes/app_route_names.dart';
 import 'package:eroll/features/home/view/components/shortcut_menu_widget.dart';
 import 'package:flutter/cupertino.dart';
 

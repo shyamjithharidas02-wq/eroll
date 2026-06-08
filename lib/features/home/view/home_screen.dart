@@ -1,7 +1,7 @@
-import 'package:eroll/components/custom_padding_widget.dart';
+import 'package:eroll/core/widgets/custom_padding_widget.dart';
 import 'package:eroll/core/constants/resource_path.dart';
 import 'package:eroll/core/constants/utility_file.dart';
-import 'package:eroll/core/routes/app_route_names.dart';
+import 'package:eroll/app/routes/app_route_names.dart';
 import 'package:eroll/features/home/view/components/in_progress_title_widget.dart';
 import 'package:eroll/features/home/view/components/in_progress_work_card_widget.dart';
 import 'package:eroll/features/home/view/components/report_card_widget.dart';
@@ -137,7 +137,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
                 // Payroll Ledger Report
                 ReportCardWidget(
-                  imagePath: ResourcePath.payrollImage,
+                  imagePath: AssetPath.payrollImage,
                   labelText: 'Payroll Ledger Report',
                   onTap: () {
                     Navigator.pushNamed(
@@ -151,7 +151,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
                 // Attendance Report
                 ReportCardWidget(
-                  imagePath: ResourcePath.attendanceImage,
+                  imagePath: AssetPath.attendanceImage,
                   labelText: 'Attendance Report',
                   onTap: () {
                     Navigator.pushNamed(
@@ -164,7 +164,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
                 // Staff Payroll Report
                 ReportCardWidget(
-                  imagePath: ResourcePath.employeePayrollImage,
+                  imagePath: AssetPath.employeePayrollImage,
                   labelText: 'Staff Payroll Report',
                   onTap: () {
                     Navigator.pushNamed(

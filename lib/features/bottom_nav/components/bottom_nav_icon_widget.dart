@@ -1,4 +1,4 @@
-import 'package:eroll/core/constants/app_colors.dart';
+import 'package:eroll/app/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class BottomNavIconWidget extends StatelessWidget {

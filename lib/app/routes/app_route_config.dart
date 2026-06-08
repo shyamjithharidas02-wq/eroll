@@ -1,4 +1,4 @@
-import 'package:eroll/core/routes/app_route_names.dart';
+import 'package:eroll/app/routes/app_route_names.dart';
 import 'package:eroll/features/attendance/report_attendance/view/attendance_report_screen.dart';
 import 'package:eroll/features/create_staff/model/create_staff_model.dart';
 import 'package:eroll/features/create_staff/views/create_staff_screen.dart';

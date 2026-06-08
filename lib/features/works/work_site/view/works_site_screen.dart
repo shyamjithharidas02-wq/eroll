@@ -1,7 +1,7 @@
-import 'package:eroll/core/constants/app_colors.dart';
+import 'package:eroll/app/theme/app_colors.dart';
 import 'package:eroll/core/constants/app_texts.dart';
 import 'package:eroll/core/constants/enums.dart';
-import 'package:eroll/core/routes/app_route_names.dart';
+import 'package:eroll/app/routes/app_route_names.dart';
 import 'package:eroll/features/works/work_site/provider/view_work_site_provider.dart';
 import 'package:eroll/features/works/work_site/view/components/works_list_tile_widget.dart';
 import 'package:flutter/material.dart';

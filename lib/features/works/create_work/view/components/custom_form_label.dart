@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../core/constants/app_colors.dart';
+import '../../../../../app/theme/app_colors.dart';
 
 class CustomFormLabel extends StatelessWidget {
   final String labelText;

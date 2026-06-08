@@ -1,7 +1,7 @@
-import 'package:eroll/core/constants/app_colors.dart';
+import 'package:eroll/app/theme/app_colors.dart';
 import 'package:eroll/core/constants/enums.dart';
 import 'package:eroll/core/constants/utility_file.dart';
-import 'package:eroll/core/routes/app_route_names.dart';
+import 'package:eroll/app/routes/app_route_names.dart';
 import 'package:eroll/features/works/create_work/model/create_work_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

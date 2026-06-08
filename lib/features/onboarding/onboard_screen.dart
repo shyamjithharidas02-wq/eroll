@@ -1,8 +1,8 @@
-import 'package:eroll/components/button_widget.dart';
-import 'package:eroll/core/constants/app_colors.dart';
+import 'package:eroll/core/widgets/button_widget.dart';
+import 'package:eroll/app/theme/app_colors.dart';
 import 'package:eroll/core/constants/app_texts.dart';
 import 'package:eroll/core/constants/resource_path.dart';
-import 'package:eroll/core/routes/app_route_names.dart';
+import 'package:eroll/app/routes/app_route_names.dart';
 import 'package:eroll/features/onboarding/components/animated_wrapper_widget.dart';
 import 'package:eroll/features/onboarding/components/onboard_tile_widget.dart';
 import 'package:flutter/cupertino.dart';
@@ -128,7 +128,7 @@ class _OnboardScreenState extends State<OnboardScreen>
                     height: 700,
                     child: LottieBuilder.asset(
                       controller: controller,
-                      ResourcePath.partyEffectJsonPath,
+                      AssetPath.partyEffectJsonPath,
                       fit: BoxFit.fill,
                       repeat: false,
                     ),

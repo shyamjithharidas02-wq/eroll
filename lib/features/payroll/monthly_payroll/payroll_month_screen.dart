@@ -1,7 +1,7 @@
-import 'package:eroll/components/custom_back_button_appbar.dart';
-import 'package:eroll/components/custom_tile_border_widget.dart';
-import 'package:eroll/components/custom_title_appbar.dart';
-import 'package:eroll/core/routes/app_route_names.dart';
+import 'package:eroll/core/widgets/custom_back_button_appbar.dart';
+import 'package:eroll/core/widgets/custom_tile_border_widget.dart';
+import 'package:eroll/core/widgets/custom_title_appbar.dart';
+import 'package:eroll/app/routes/app_route_names.dart';
 import 'package:flutter/material.dart';
 
 class PayrollMonthScreen extends StatelessWidget {

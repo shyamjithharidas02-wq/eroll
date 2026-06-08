@@ -1,6 +1,6 @@
-import 'package:eroll/core/constants/app_colors.dart';
+import 'package:eroll/app/theme/app_colors.dart';
 import 'package:eroll/core/constants/resource_path.dart';
-import 'package:eroll/core/routes/app_route_names.dart';
+import 'package:eroll/app/routes/app_route_names.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -53,7 +53,7 @@ class _StaffListPayrollScreenState extends State<StaffListPayrollScreen> {
                     CircleAvatar(
                       radius: 30,
                       backgroundImage: AssetImage(
-                        ResourcePath.profileCircleVector,
+                        AssetPath.profileCircleVector,
                       ),
                     ),
                     Column(

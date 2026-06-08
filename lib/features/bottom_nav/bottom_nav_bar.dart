@@ -1,4 +1,4 @@
-import 'package:eroll/core/constants/app_colors.dart';
+import 'package:eroll/app/theme/app_colors.dart';
 import 'package:eroll/features/home/view/home_screen.dart';
 import 'package:eroll/features/staffs/view/staffs_screen.dart';
 import 'package:eroll/features/works/work_site/view/works_site_screen.dart';

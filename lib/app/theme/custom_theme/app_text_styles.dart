@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class AppTextTheme {
-  AppTextTheme._internal();
+class AppTextStyles {
+  AppTextStyles._internal();
 
   static TextTheme textTheme = TextTheme(
     bodyMedium: TextStyle(

@@ -1,6 +1,6 @@
 import 'package:easy_date_timeline/easy_date_timeline.dart';
-import 'package:eroll/components/button_widget.dart';
-import 'package:eroll/core/constants/app_colors.dart';
+import 'package:eroll/core/widgets/button_widget.dart';
+import 'package:eroll/app/theme/app_colors.dart';
 import 'package:eroll/core/constants/app_texts.dart';
 import 'package:eroll/core/constants/resource_path.dart';
 import 'package:eroll/features/staffs/provider/view_staff_provider.dart';
@@ -102,7 +102,7 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
                               CircleAvatar(
                                 radius: 30,
                                 backgroundImage: AssetImage(
-                                  ResourcePath.profileCircleVector,
+                                  AssetPath.profileCircleVector,
                                 ),
                               ),
 
@@ -160,7 +160,7 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
 Center(
                         child: Column(
                           children: [
-                            Image.asset(ResourcePath.emptyListImage),
+                            Image.asset(AssetPath.emptyListImage),
                             Text(
                               'No Active Staffs Available',
                               style: TextStyle(fontWeight: FontWeight.w700),

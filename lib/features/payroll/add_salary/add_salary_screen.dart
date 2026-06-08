@@ -1,7 +1,7 @@
-import 'package:eroll/components/button_widget.dart';
-import 'package:eroll/components/custom_back_button_appbar.dart';
-import 'package:eroll/components/custom_title_appbar.dart';
-import 'package:eroll/core/constants/app_colors.dart';
+import 'package:eroll/core/widgets/button_widget.dart';
+import 'package:eroll/core/widgets/custom_back_button_appbar.dart';
+import 'package:eroll/core/widgets/custom_title_appbar.dart';
+import 'package:eroll/app/theme/app_colors.dart';
 import 'package:eroll/core/constants/data_constants.dart';
 import 'package:flutter/material.dart';
 
