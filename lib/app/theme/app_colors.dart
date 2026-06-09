@@ -5,10 +5,10 @@ class AppColors {
   static const deepPurple = Colors.deepPurple;
   static const blueAccent = Colors.blueAccent;
 
-  //static Color primaryColor = Colors.deepPurple.shade400;
-  static const Color primaryColor = Color(0xFF536FF9);
+  static const Color primaryColor = Color(0xFF3F3FBF);
   static const Color secondaryColor = Color(0xFF181C4E);
   static const Color strokeColor = Color(0xFFECE8F6);
+  static const Color primaryBg = Color(0xFFF5F5FB);
   static const Color white = Color(0xFFFFFFFF);
   static const Color red = Color(0xFFF44336);
   static const Color green = Color(0xFF13AE26);
