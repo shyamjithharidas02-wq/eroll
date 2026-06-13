@@ -8,7 +8,8 @@ class UtilityFile {
   }
 
   static dynamic currentDay(DateTime date) {
-    final currentDay = DateFormat.EEEE().format(date);
+    //final currentDay = DateFormat.EEEE().format(date); => Sunday
+    final currentDay = DateFormat('EEE').format(date);
     return currentDay;
   }
 

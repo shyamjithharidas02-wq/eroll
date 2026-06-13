@@ -7,7 +7,7 @@ import 'package:eroll/features/payroll/monthly_ledger_report/view/monthly_ledger
 import 'package:eroll/features/settings/view/settings_screen.dart';
 import 'package:eroll/features/works/create_work/model/create_work_model.dart';
 import 'package:eroll/features/works/create_work/view/create_work_screen.dart';
-import 'package:eroll/features/home/view/home_screen.dart';
+import 'package:eroll/features/home/views/home_page.dart';
 import 'package:eroll/features/leave/staff_leave_screen.dart';
 import 'package:eroll/features/onboarding/onboard_screen.dart';
 import 'package:eroll/features/onboarding/splash_screen.dart';
@@ -34,8 +34,8 @@ class AppRouteConfig {
       case AppRouteNames.bottomNavScreen:
         return MaterialPageRoute(builder: (context) => BottomNavBar());
 
-      case AppRouteNames.homeScreen:
-        return MaterialPageRoute(builder: (context) => HomeScreen());
+      case AppRouteNames.HomePage:
+        return MaterialPageRoute(builder: (context) => HomePage());
 
       case AppRouteNames.attendanceScreen:
         return MaterialPageRoute(builder: (context) => AttendanceScreen());

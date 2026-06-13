@@ -8,8 +8,7 @@ class UpcomingEventBanner extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 20),
-      height: 200,
+      height: 100,
       width: double.infinity,
       decoration: BoxDecoration(
         color: AppColors.primaryColor,

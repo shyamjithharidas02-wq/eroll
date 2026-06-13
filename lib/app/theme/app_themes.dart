@@ -6,11 +6,17 @@ import 'package:flutter/material.dart';
 class AppThemes {
   static ThemeData lightTheme = ThemeData(
     useMaterial3: true,
-    primaryColor: AppColors.primaryColor,
-    // scaffoldBackgroundColor: Color.fromRGBO(248, 247, 251, 1),
-    scaffoldBackgroundColor: AppColors.white,
+
+    colorScheme: ColorScheme.light(
+      primary: AppColors.primaryColor,
+      secondary: AppColors.secondaryColor,
+      surface: AppColors.white,
+    ),
+
+    scaffoldBackgroundColor: AppColors.primaryBg,
     textTheme: AppTextStyles.textTheme,
     appBarTheme: AppBarThemes.appBarTheme,
+
     inputDecorationTheme: InputDecorationTheme(
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(10),

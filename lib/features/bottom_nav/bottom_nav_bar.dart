@@ -1,5 +1,5 @@
 import 'package:eroll/app/theme/app_colors.dart';
-import 'package:eroll/features/home/view/home_screen.dart';
+import 'package:eroll/features/home/views/home_page.dart';
 import 'package:eroll/features/staffs/view/staffs_screen.dart';
 import 'package:eroll/features/works/work_site/view/works_site_screen.dart';
 import 'package:flutter/cupertino.dart';
@@ -18,7 +18,7 @@ class BottomNavBar extends StatefulWidget {
 class _BottomNavBarState extends State<BottomNavBar> {
   int currentIndex = 0;
   final List<Widget> screens = [
-    HomeScreen(),
+    HomePage(),
     AttendanceScreen(),
     StaffsScreen(),
     WorksSiteScreen(),
