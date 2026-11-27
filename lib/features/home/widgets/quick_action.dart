@@ -33,7 +33,7 @@ class QuickAction extends StatelessWidget {
             spacing: AppSizes.sm,
             children: [
               Container(
-                padding: EdgeInsets.all(AppSizes.sm),
+                padding: const EdgeInsets.all(AppSizes.sm),
                 decoration: BoxDecoration(
                   color: iconBg,
                   borderRadius: BorderRadius.circular(AppSizes.radiusLg),
@@ -43,7 +43,10 @@ class QuickAction extends StatelessWidget {
 
               Text(
                 label,
-                style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
+                style: const TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w500,
+                ),
               ),
             ],
           ),

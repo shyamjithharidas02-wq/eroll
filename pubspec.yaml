@@ -1,36 +1,51 @@
 name: eroll
 description: "A new Flutter project."
 
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
 version: 1.0.0+1
 
 environment:
-  sdk: ^3.7.2
+  sdk: ^3.13.0
 
 dependencies:
   flutter:
     sdk: flutter
 
-  cupertino_icons: ^1.0.8
+  cupertino_icons: ^2.0.0
   lottie: ^3.3.1
-  animate_do: ^4.2.0
+  animate_do: ^5.1.0
   intl: ^0.20.2
   easy_date_timeline: ^2.0.9
-  firebase_core: ^3.15.2
+  firebase_core: ^5.2.0
   provider: ^6.1.5
-  cloud_firestore: ^5.6.12
+  cloud_firestore: ^7.2.0
   gap: ^3.0.1
   iconsax_flutter: ^1.0.1
+  url_launcher: ^6.3.3
+  flutter_secure_storage: ^11.2.0
+  local_auth: ^3.0.2
+  crypto: ^3.0.8
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  flutter_lints: ^5.0.0
+  flutter_lints: ^6.0.0
+  flutter_launcher_icons: ^0.14.4
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "lib/assets/images/app_icon.png"
+  min_sdk_android: 24
+  # Android 8+ adaptive icon: lime lettering on the dark forest green.
+  adaptive_icon_background: "#14241D"
+  adaptive_icon_foreground: "lib/assets/images/app_icon_foreground.png"
+  # App Store rejects icons with transparency.
+  remove_alpha_ios: true
 
 flutter:
-
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
@@ -43,6 +58,5 @@ flutter:
       fonts:
         - asset: lib/assets/fonts/Cabin/static/Cabin-Regular.ttf
     - family: cabinBold
-      fonts:  
+      fonts:
         - asset: lib/assets/fonts/Cabin/static/Cabin-Bold.ttf
-

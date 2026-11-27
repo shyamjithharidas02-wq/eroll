@@ -7,6 +7,6 @@ class CustomTitleAppbar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(appBarTitle, style: TextStyle(fontFamily: 'cabinBold'));
+    return Text(appBarTitle, style: const TextStyle(fontFamily: 'cabinBold'));
   }
 }

@@ -41,14 +41,14 @@ class ReportCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
-                padding: EdgeInsets.all(AppSizes.sm),
+                padding: const EdgeInsets.all(AppSizes.sm),
                 decoration: BoxDecoration(
                   color: iconBg,
                   borderRadius: BorderRadius.circular(AppSizes.radiusLg),
                 ),
                 child: Icon(icon, size: AppSizes.iconMd, color: iconColor),
               ),
-              Gap(AppSizes.md),
+              const Gap(AppSizes.md),
 
               Text(
                 title,
@@ -58,7 +58,7 @@ class ReportCard extends StatelessWidget {
               ),
               Text(
                 subTitle,
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 14,
                   color: AppColors.grey,
                   fontWeight: FontWeight.w500,

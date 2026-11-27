@@ -18,8 +18,8 @@ class _StaffPayrollReportScreenState extends State<StaffPayrollReportScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: CustomBackButtonAppbar(),
-        title: CustomTitleAppbar(appBarTitle: 'Salary Sheet'),
+        leading: const CustomBackButtonAppbar(),
+        title: const CustomTitleAppbar(appBarTitle: 'Salary Sheet'),
       ),
       body: SafeArea(
         child: Padding(
@@ -28,17 +28,21 @@ class _StaffPayrollReportScreenState extends State<StaffPayrollReportScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(height: 40),
+                const SizedBox(height: 40),
 
-                ConditionsApplyWidget(),
-                SizedBox(height: 12),
+                const ConditionsApplyWidget(),
+                const SizedBox(height: 12),
 
-                SalarySheetMonthTitleWidget(),
-                SizedBox(height: 12),
+                const SalarySheetMonthTitleWidget(),
+                const SizedBox(height: 12),
 
-                Row(children: [Text('Staff  name: '), Text('Shanid P P')]),
-                Row(children: [Text('Phone number: '), Text('9876543210')]),
-                SizedBox(height: 30),
+                const Row(
+                  children: [Text('Staff  name: '), Text('Shanid P P')],
+                ),
+                const Row(
+                  children: [Text('Phone number: '), Text('9876543210')],
+                ),
+                const SizedBox(height: 30),
 
                 SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
@@ -49,14 +53,14 @@ class _StaffPayrollReportScreenState extends State<StaffPayrollReportScreen> {
                     headingRowColor: WidgetStateColor.resolveWith(
                       (states) => Colors.grey.shade200,
                     ),
-                    columns: <DataColumn>[
+                    columns: const <DataColumn>[
                       DataColumn(label: Text('Date')),
                       DataColumn(label: Text('No Of Works')),
                       DataColumn(label: Text('Gross Sal')),
                       DataColumn(label: Text('Advance')),
                       DataColumn(label: Text('Net Sal')),
                     ],
-                    rows: <DataRow>[
+                    rows: const <DataRow>[
                       DataRow(
                         cells: <DataCell>[
                           DataCell(Text('01-07')),
@@ -139,17 +143,17 @@ class _StaffPayrollReportScreenState extends State<StaffPayrollReportScreen> {
                     ],
                   ),
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
 
                 // Advance Details
-                Text(
+                const Text(
                   'Advance Details',
                   style: TextStyle(fontFamily: 'cabinBold'),
                 ),
 
                 ...List.generate(5, (index) {
-                  return Padding(
-                    padding: const EdgeInsets.only(top: 10),
+                  return const Padding(
+                    padding: EdgeInsets.only(top: 10),
                     child: Row(
                       children: [
                         Text('18-June-2025: '),

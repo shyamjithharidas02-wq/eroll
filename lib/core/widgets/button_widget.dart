@@ -8,12 +8,14 @@ class ButtonWidget extends StatelessWidget {
     required this.btnColor,
     required this.btnAction,
     required this.isLoading,
+    this.btnRadius = 12,
   });
 
   final String btnText;
   final Color btnColor;
   final VoidCallback? btnAction;
   final bool isLoading;
+  final double btnRadius;
 
   @override
   Widget build(BuildContext context) {
@@ -24,23 +26,22 @@ class ButtonWidget extends StatelessWidget {
         alignment: Alignment.center,
         decoration: BoxDecoration(
           color: btnColor,
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: BorderRadius.circular(btnRadius),
         ),
-        padding: EdgeInsets.all(15),
-        child:
-            isLoading
-                ? SizedBox(
-                  height: 24,
-                  width: 24,
-                  child: CircularProgressIndicator(color: AppColors.white),
-                )
-                : Text(
-                  btnText,
-                  style: TextStyle(
-                    color: AppColors.white,
-                    fontWeight: FontWeight.bold,
-                  ),
+        padding: const EdgeInsets.all(15),
+        child: isLoading
+            ? const SizedBox(
+                height: 24,
+                width: 24,
+                child: CircularProgressIndicator(color: AppColors.white),
+              )
+            : Text(
+                btnText,
+                style: const TextStyle(
+                  color: AppColors.white,
+                  fontWeight: FontWeight.bold,
                 ),
+              ),
       ),
     );
   }

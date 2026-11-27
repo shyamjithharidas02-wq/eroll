@@ -13,8 +13,8 @@ class PayrollMonthScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: CustomBackButtonAppbar(),
-        title: CustomTitleAppbar(appBarTitle: 'Months'),
+        leading: const CustomBackButtonAppbar(),
+        title: const CustomTitleAppbar(appBarTitle: 'Months'),
       ),
 
       body: SafeArea(
@@ -38,7 +38,7 @@ class PayrollMonthScreen extends StatelessWidget {
               child: CustomTileBorderWidget(child: Text('Month ${index + 1}')),
             );
           },
-          padding: EdgeInsets.symmetric(horizontal: 20),
+          padding: const EdgeInsets.symmetric(horizontal: 20),
         ),
       ),
     );

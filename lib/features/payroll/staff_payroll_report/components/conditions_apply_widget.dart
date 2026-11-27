@@ -7,12 +7,11 @@ class ConditionsApplyWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Text('*'),
+        const Text('*'),
         Text(
           'This is a salary sheet of only one month',
-          style: Theme.of(
-            context,
-          ).textTheme.bodySmall!.copyWith(color: Colors.black45),
+          style: Theme.of(context).textTheme.bodySmall!
+              .copyWith(color: Colors.black45),
         ),
       ],
     );

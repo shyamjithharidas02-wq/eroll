@@ -17,8 +17,8 @@ class QuickMenu extends StatelessWidget {
         children: [
           QuickAction(
             icon: Iconsax.calendar,
-            iconBg: Color.fromARGB(255, 216, 216, 251),
-            iconColor: AppColors.primaryColor,
+            iconBg: AppColors.primaryTint,
+            iconColor: AppColors.primary,
             label: "Leaves",
             onTap: () {
               Navigator.pushNamed(context, AppRouteNames.staffOnLeaveScreen);
@@ -26,8 +26,8 @@ class QuickMenu extends StatelessWidget {
           ),
           QuickAction(
             icon: Iconsax.dollar_circle,
-            iconBg: Color(0xFFFFF3D7),
-            iconColor: Color(0xFFC9904B),
+            iconBg: AppColors.amberTint,
+            iconColor: AppColors.amber,
             label: "Payroll",
             onTap: () {
               Navigator.pushNamed(context, AppRouteNames.addSalaryScreen);
@@ -35,8 +35,8 @@ class QuickMenu extends StatelessWidget {
           ),
           QuickAction(
             icon: Iconsax.user_add_copy,
-            iconBg: Color(0xFFE6F4E5),
-            iconColor: Color(0xFF4A6D4C),
+            iconBg: AppColors.greenTint,
+            iconColor: AppColors.green,
             label: "Add Staff ",
             onTap: () {
               Navigator.pushNamed(context, AppRouteNames.createStaffScreen);
@@ -44,8 +44,8 @@ class QuickMenu extends StatelessWidget {
           ),
           QuickAction(
             icon: CupertinoIcons.hammer_fill,
-            iconBg: Color(0xFFF8E1E7),
-            iconColor: Color(0xFFA33842),
+            iconBg: AppColors.redTint,
+            iconColor: AppColors.red,
             label: "Add Work",
             onTap: () {
               Navigator.pushNamed(context, AppRouteNames.createWorkScreen);

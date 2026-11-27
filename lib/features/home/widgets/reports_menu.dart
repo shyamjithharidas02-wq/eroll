@@ -24,8 +24,8 @@ class ReportsMenu extends StatelessWidget {
             Expanded(
               child: ReportCard(
                 icon: Iconsax.document_1_copy,
-                iconColor: AppColors.primaryColor,
-                iconBg: Color.fromARGB(255, 216, 216, 251),
+                iconColor: AppColors.primary,
+                iconBg: AppColors.primaryTint,
                 title: "Payroll Ledger",
                 subTitle: "Monthly overview",
                 onTap: () {
@@ -42,8 +42,8 @@ class ReportsMenu extends StatelessWidget {
             Expanded(
               child: ReportCard(
                 icon: Iconsax.profile_2user_copy,
-                iconColor: Color(0xFF4A6D4C),
-                iconBg: Color(0xFFE6F4E5),
+                iconColor: AppColors.green,
+                iconBg: AppColors.greenTint,
                 title: "Attendance",
                 subTitle: "Daily & monthly",
                 onTap: () {
@@ -76,18 +76,18 @@ class ReportsMenu extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
-                    padding: EdgeInsets.all(AppSizes.sm),
+                    padding: const EdgeInsets.all(AppSizes.sm),
                     decoration: BoxDecoration(
-                      color: Color(0xFFFFF3D7),
+                      color: AppColors.amberTint,
                       borderRadius: BorderRadius.circular(AppSizes.radiusLg),
                     ),
-                    child: Icon(
+                    child: const Icon(
                       Iconsax.document_cloud,
                       size: AppSizes.iconMd,
-                      color: Color(0xFFC9904B),
+                      color: AppColors.amber,
                     ),
                   ),
-                  Gap(AppSizes.md),
+                  const Gap(AppSizes.md),
 
                   Column(
                     children: [
@@ -97,7 +97,7 @@ class ReportsMenu extends StatelessWidget {
                           fontWeight: FontWeight.w600,
                         ),
                       ),
-                      Text(
+                      const Text(
                         "Pre-staff salary breakdown",
                         style: TextStyle(
                           fontSize: 14,

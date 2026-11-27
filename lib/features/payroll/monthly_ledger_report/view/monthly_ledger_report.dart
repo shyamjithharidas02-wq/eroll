@@ -12,25 +12,25 @@ class MonthlyLedgerReport extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: CustomBackButtonAppbar(),
-        title: CustomTitleAppbar(appBarTitle: 'Monthly Ledger Report'),
+        leading: const CustomBackButtonAppbar(),
+        title: const CustomTitleAppbar(appBarTitle: 'Monthly Ledger Report'),
       ),
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20),
+          padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: 40),
+              const SizedBox(height: 40),
 
-              ConditionsApplyWidget(),
-              SizedBox(height: 12),
+              const ConditionsApplyWidget(),
+              const SizedBox(height: 12),
 
-              SalarySheetMonthTitleWidget(),
-              SizedBox(height: 12),
+              const SalarySheetMonthTitleWidget(),
+              const SizedBox(height: 12),
 
-              Text('Created by admin'),
-              SizedBox(height: 12),
+              const Text('Created by admin'),
+              const SizedBox(height: 12),
 
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
@@ -41,13 +41,13 @@ class MonthlyLedgerReport extends StatelessWidget {
                   headingRowColor: WidgetStateColor.resolveWith(
                     (states) => Colors.grey.shade200,
                   ),
-                  columns: <DataColumn>[
+                  columns: const <DataColumn>[
                     DataColumn(label: Text('Staff Name')),
                     DataColumn(label: Text('Total Works')),
                     DataColumn(label: Text('Total Leaves')),
                     DataColumn(label: Text('Net Salary')),
                   ],
-                  rows: <DataRow>[
+                  rows: const <DataRow>[
                     DataRow(
                       cells: <DataCell>[
                         DataCell(Text('Shanid')),
