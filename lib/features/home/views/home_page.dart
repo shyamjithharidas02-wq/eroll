@@ -1,186 +1,178 @@
-import 'package:eroll/app/theme/app_colors.dart';
-import 'package:eroll/app/theme/app_sizes.dart';
-import 'package:eroll/app/theme/extensions/theme_extensions.dart';
-import 'package:eroll/core/constants/utility_file.dart';
 import 'package:eroll/app/routes/app_route_names.dart';
-import 'package:eroll/features/upcoming_event/view/upcoming_event_banner.dart';
+import 'package:eroll/app/theme/app_colors.dart';
+import 'package:eroll/core/utils/utils.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:gap/gap.dart';
-import 'package:iconsax_flutter/iconsax_flutter.dart';
 
-import '../../../core/constants/resource_path.dart';
-import '../widgets/ongoing_works_card.dart';
-import '../widgets/quick_menu.dart';
-import '../widgets/reports_menu.dart';
-import '../widgets/welcome_card.dart';
+import '../../entries/widgets/add_entry_sheet.dart';
+import '../../works/work_site/data/models/site_model.dart';
+import '../models/home_dashboard_data.dart';
+import '../widgets/active_sites_strip.dart';
+import '../widgets/crew_strip.dart';
+import '../widgets/home_header.dart';
+import '../widgets/home_quick_actions.dart';
+import '../widgets/home_section_header.dart';
+import '../widgets/more_sheet.dart';
+import '../widgets/wage_summary_card.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class HomePage extends StatelessWidget {
+  const HomePage({super.key, this.onOpenTab});
 
-  @override
-  State<HomePage> createState() => _HomePageState();
-}
+  /// Lets the home screen jump to another bottom-nav tab (e.g. "See all").
+  final ValueChanged<int>? onOpenTab;
 
-class _HomePageState extends State<HomePage> {
+  static const double _hPad = 22;
+
+  /// How far the wage card hangs below the dark header.
+  static const double _cardOverhang = 82;
+
+  /// Opens the "Add entry" sheet on the tapped tab.
+  Future<void> _addEntry(BuildContext context, EntryType type) async {
+    final result = await AddEntrySheet.show(context, initialType: type);
+    if (result != null && context.mounted) {
+      // TODO: persist the entry to Firestore.
+      Utils.showSnackBar(result.summary, context);
+    }
+  }
+
+  /// Opens the "More" sheet, then routes to the chosen shortcut.
+  Future<void> _openMore(BuildContext context) async {
+    // TODO: compute from site transactions and wages.
+    const monthProfit = 58000;
+    final action = await MoreSheet.show(context, monthProfit: monthProfit);
+    if (action == null || !context.mounted) return;
+
+    // Root navigator so pushed pages cover the bottom nav bar.
+    final nav = Navigator.of(context, rootNavigator: true);
+    switch (action) {
+      case MoreAction.profit:
+      case MoreAction.reports:
+        nav.pushNamed(AppRouteNames.reportsScreen);
+      case MoreAction.newSite:
+        final site = await nav.pushNamed<SiteModel>(
+          AppRouteNames.createWorkScreen,
+        );
+        if (site == null || !context.mounted) return;
+        // TODO: replace with Firestore write; demo list is the in-memory store.
+        SiteModel.demo.insert(0, site);
+        Utils.showSnackBar('${site.title} created', context);
+        onOpenTab?.call(1);
+      case MoreAction.addStaff:
+        nav.pushNamed(AppRouteNames.createStaffScreen);
+      case MoreAction.settings:
+        nav.pushNamed(AppRouteNames.settingsScreen);
+      case MoreAction.exportPdf:
+      case MoreAction.backup:
+        Utils.showSnackBar('Coming soon', context);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        centerTitle: false,
-        toolbarHeight: 70,
-        backgroundColor: AppColors.primaryColor,
-        title: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              "Good morning 👋",
-              style: context.textTheme.headlineSmall?.copyWith(
-                color: AppColors.white,
-              ),
-            ),
+    final data = HomeDashboardData.demo;
+    final media = MediaQuery.of(context);
 
-            Row(
-              children: [
-                Text(
-                  UtilityFile.currentDay(DateTime.now()),
-                  style: context.textTheme.bodyMedium?.copyWith(
-                    fontWeight: FontWeight.bold,
-                    color: AppColors.white,
+    return AnnotatedRegion<SystemUiOverlayStyle>(
+      value: SystemUiOverlayStyle.light,
+      child: Scaffold(
+        backgroundColor: AppColors.canvas,
+        body: SingleChildScrollView(
+          // Clamp so pulling down never reveals light canvas above the header.
+          physics: const ClampingScrollPhysics(),
+          padding: EdgeInsets.only(bottom: media.padding.bottom + 20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              // Dark header with the wage card overlapping its bottom edge.
+              Stack(
+                children: [
+                  const Positioned(
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    bottom: _cardOverhang,
+                    child: DecoratedBox(
+                      decoration: BoxDecoration(
+                        color: AppColors.forest,
+                        borderRadius: BorderRadius.vertical(
+                          bottom: Radius.circular(44),
+                        ),
+                      ),
+                    ),
                   ),
-                ),
-                Text(
-                  ", ",
-                  style: context.textTheme.bodyMedium?.copyWith(
-                    color: AppColors.white,
-                  ),
-                ),
-                Text(
-                  UtilityFile.formatDate(DateTime.now()),
-                  style: context.textTheme.bodyMedium?.copyWith(
-                    color: AppColors.white,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ],
-            ),
-          ],
-        ),
-        actions: [
-          IconButton(
-            icon: Icon(
-              Iconsax.search_normal_copy,
-              size: AppSizes.iconMd,
-              color: AppColors.white,
-            ),
-            onPressed: () {
-              //  todo: search function
-            },
-          ),
-          IconButton(
-            icon: Icon(
-              Iconsax.setting_2_copy,
-              size: AppSizes.iconMd,
-              color: AppColors.white,
-            ),
-            onPressed: () {
-              Navigator.pushNamed(context, AppRouteNames.settingsScreen);
-            },
-          ),
-        ],
-        actionsPadding: EdgeInsets.only(right: 10),
-      ),
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: EdgeInsets.only(left: AppSizes.md, right: AppSizes.md),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                Gap(AppSizes.md),
-
-                // Admin Welcome Card
-                WelcomeCard(),
-                Gap(AppSizes.md),
-
-                Text("Quick Actions", style: context.textTheme.titleLarge),
-                Gap(AppSizes.md),
-
-                // Quick Actions
-                QuickMenu(),
-                Gap(AppSizes.md),
-
-                // Reports
-                Text("Reports", style: context.textTheme.titleLarge),
-                Gap(AppSizes.md),
-                ReportsMenu(),
-                Gap(AppSizes.md),
-
-                // Ongoing Works
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text("Ongoing Works", style: context.textTheme.titleLarge),
-                    TextButton(onPressed: () {}, child: Text("See all →")),
-                  ],
-                ),
-                Gap(AppSizes.md),
-                ListView(
-                  shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
-                  children: [
-                    OngoingWorksCard(),
-                    Gap(AppSizes.sm),
-                    OngoingWorksCard(),
-                  ],
-                ),
-                Gap(AppSizes.md),
-
-                // Upcoming Banner - Demo purpose
-                Text("Upcoming Events", style: context.textTheme.titleLarge),
-                Gap(AppSizes.md),
-                Container(
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: [
-                        AppColors.primaryColor,
-                        Color.fromARGB(255, 88, 88, 255),
+                  Padding(
+                    padding: EdgeInsets.fromLTRB(
+                      _hPad,
+                      media.padding.top + 20,
+                      _hPad,
+                      0,
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        HomeHeader(
+                          adminName: data.adminName,
+                          wagesDue: data.wages.due,
+                          hasNotifications: true,
+                          onNotificationTap: () => Utils.showSnackBar(
+                            'No new notifications',
+                            context,
+                          ),
+                        ),
+                        const Gap(28),
+                        WageSummaryCard(
+                          summary: data.wages,
+                          onSettleTap: () => onOpenTab?.call(3),
+                        ),
                       ],
                     ),
-                    borderRadius: BorderRadius.circular(AppSizes.radiusMd),
                   ),
-                  padding: EdgeInsets.all(AppSizes.md),
-                  child: Column(
-                    spacing: AppSizes.xs,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Next Event",
-                        style: context.textTheme.bodyMedium?.copyWith(
-                          color: AppColors.white,
-                        ),
-                      ),
-                      Text(
-                        "Monthly Payroll Processing",
-                        style: context.textTheme.titleLarge?.copyWith(
-                          color: AppColors.white,
-                        ),
-                      ),
-                      Text(
-                        "June 30 . End of month",
-                        style: context.textTheme.bodySmall?.copyWith(
-                          color: AppColors.white,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                    ],
-                  ),
+                ],
+              ),
+              const Gap(22),
+
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: _hPad),
+                child: HomeQuickActions(
+                  onAdvance: () => _addEntry(context, EntryType.advance),
+                  onExpense: () => _addEntry(context, EntryType.expense),
+                  onClientPaid: () => _addEntry(context, EntryType.clientPaid),
+                  onMore: () => _openMore(context),
                 ),
-                Gap(AppSizes.md),
-                UpcomingEventBanner(),
-                Gap(AppSizes.md),
-              ],
-            ),
+              ),
+              const Gap(30),
+
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: _hPad),
+                child: HomeSectionHeader(
+                  title: 'Today’s crew',
+                  actionLabel: '${data.crewPresent} of ${data.crewTotal} ›',
+                  onActionTap: () => onOpenTab?.call(2),
+                ),
+              ),
+              const Gap(14),
+              CrewStrip(
+                crew: data.crew,
+                padding: const EdgeInsets.symmetric(horizontal: _hPad),
+              ),
+              const Gap(20),
+
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: _hPad),
+                child: HomeSectionHeader(
+                  title: 'Active sites',
+                  actionLabel: 'See all',
+                  onActionTap: () => onOpenTab?.call(1),
+                ),
+              ),
+              const Gap(14),
+              ActiveSitesStrip(
+                sites: data.sites,
+                padding: const EdgeInsets.symmetric(horizontal: _hPad),
+                onSiteTap: (_) => onOpenTab?.call(1),
+              ),
+            ],
           ),
         ),
       ),

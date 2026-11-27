@@ -72,5 +72,4 @@ class DefaultFirebaseOptions {
     storageBucket: 'e-roll-8270a.firebasestorage.app',
     measurementId: 'G-P86BY4WBZC',
   );
-
 }

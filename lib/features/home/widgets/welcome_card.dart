@@ -12,10 +12,10 @@ class WelcomeCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       // color: Color(0xFFE8E5EF),
-      color: Color.fromARGB(255, 220, 220, 255),
+      color: const Color.fromARGB(255, 220, 220, 255),
       elevation: .2,
       child: Padding(
-        padding: EdgeInsets.all(AppSizes.lg),
+        padding: const EdgeInsets.all(AppSizes.lg),
         child: Column(
           spacing: AppSizes.xs,
           crossAxisAlignment: CrossAxisAlignment.start,

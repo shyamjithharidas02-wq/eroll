@@ -5,7 +5,16 @@ import '../../../app/theme/app_sizes.dart';
 import '../../../app/theme/extensions/theme_extensions.dart';
 
 class OngoingWorksCard extends StatelessWidget {
-  const OngoingWorksCard({super.key});
+  final String workStatus;
+  final Color fontColor;
+  final Color bgColor;
+
+  const OngoingWorksCard({
+    super.key,
+    this.workStatus = 'Ongoing',
+    this.fontColor = AppColors.primary,
+    this.bgColor = AppColors.primaryTint,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -24,29 +33,38 @@ class OngoingWorksCard extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                Spacer(),
+                const Spacer(),
 
                 Container(
-                  padding: EdgeInsets.symmetric(
+                  padding: const EdgeInsets.symmetric(
                     vertical: AppSizes.xs,
                     horizontal: AppSizes.sm,
                   ),
                   decoration: BoxDecoration(
-                    color: Color.fromARGB(255, 210, 210, 249),
+                    color: bgColor,
                     borderRadius: BorderRadius.circular(AppSizes.md),
                   ),
                   child: Text(
-                    "Ongoing",
-                    style: TextStyle(
-                      fontSize: 14,
-                      color: AppColors.primaryColor,
-                    ),
+                    workStatus,
+                    style: TextStyle(fontSize: 14, color: fontColor),
                   ),
                 ),
               ],
             ),
-            Text("Kalpetta", style: TextStyle(color: AppColors.grey)),
-            Text("⏰ June 9"),
+            const Text("📍 Kalpetta", style: TextStyle(color: AppColors.grey)),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Text("⏰ June 9"),
+                Text(
+                  "3 staffs",
+                  style: context.textTheme.bodyMedium?.copyWith(
+                    fontWeight: FontWeight.w500,
+                    color: AppColors.grey,
+                  ),
+                ),
+              ],
+            ),
           ],
         ),
       ),

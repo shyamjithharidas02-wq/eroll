@@ -1,4 +1,3 @@
-import 'package:eroll/providers/app_providers.dart';
 import 'package:eroll/app/routes/app_route_config.dart';
 import 'package:eroll/app/routes/app_route_names.dart';
 import 'package:eroll/app/theme/app_themes.dart';
@@ -6,6 +5,8 @@ import 'package:eroll/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import 'providers/app_providers.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -23,10 +24,12 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: AppProviders.buildProviders(),
       child: MaterialApp(
+        // Shown in the Android recent-apps switcher.
+        title: 'Kinar',
         theme: AppThemes.lightTheme,
         //showPerformanceOverlay: true,
         debugShowCheckedModeBanner: false,
-        initialRoute: AppRouteNames.splashScreen,
+        initialRoute: AppRouteNames.splashPage,
         onGenerateRoute: AppRouteConfig.onGenerateRoute,
       ),
     );

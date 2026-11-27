@@ -9,11 +9,11 @@ class AttendanceReportScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: CustomBackButtonAppbar(),
-        title: CustomTitleAppbar(appBarTitle: 'Attendance Report'),
+        leading: const CustomBackButtonAppbar(),
+        title: const CustomTitleAppbar(appBarTitle: 'Attendance Report'),
       ),
 
-      body: Column(children: <Widget>[]),
+      body: const Column(children: <Widget>[]),
     );
   }
 }

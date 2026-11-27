@@ -5,7 +5,7 @@ class SalarySheetMonthTitleWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
+    return const Text(
       'Salary Sheet of June 2025',
       style: TextStyle(fontFamily: 'cabinBold', fontSize: 20),
     );

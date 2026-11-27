@@ -1,3 +1,4 @@
+import 'package:eroll/app/theme/app_colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -16,7 +17,7 @@ class CustomBackButtonAppbar extends StatelessWidget {
           Navigator.pop(context);
         }
       },
-      icon: Icon(CupertinoIcons.back),
+      icon: const Icon(CupertinoIcons.back, color: AppColors.white),
     );
   }
 }

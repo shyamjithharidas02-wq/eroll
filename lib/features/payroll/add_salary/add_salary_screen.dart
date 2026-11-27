@@ -14,8 +14,8 @@ class AddSalaryScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: CustomBackButtonAppbar(),
-        title: CustomTitleAppbar(appBarTitle: 'Add Salary'),
+        leading: const CustomBackButtonAppbar(),
+        title: const CustomTitleAppbar(appBarTitle: 'Add Salary'),
       ),
 
       body: Padding(
@@ -24,34 +24,31 @@ class AddSalaryScreen extends StatelessWidget {
           spacing: 12.0,
           children: [
             // Amount Field
-            TextField(
+            const TextField(
               keyboardType: TextInputType.number,
               decoration: InputDecoration(labelText: 'Amount'),
             ),
 
             // Select Staff
             DropdownButtonFormField(
-              hint: Text('Select Staff'),
+              hint: const Text('Select Staff'),
               //value: value,
-              items:
-                  DataConstants.checkListEmployees
-                      .map<DropdownMenuItem<String>>((e) {
-                        return DropdownMenuItem<String>(
-                          value: e,
-                          child: Text(e),
-                        );
-                      })
-                      .toList(),
+              items: DataConstants.checkListEmployees
+                  .map<DropdownMenuItem<String>>((e) {
+                    return DropdownMenuItem<String>(value: e, child: Text(e));
+                  })
+                  .toList(),
               onChanged: (value) {},
             ),
 
             // Salary Type - Advance | Net
             DropdownButtonFormField(
-              hint: Text('Salary Type'),
-              items:
-                  DataConstants.salaryType.map<DropdownMenuItem<String>>((e) {
-                    return DropdownMenuItem<String>(value: e, child: Text(e));
-                  }).toList(),
+              hint: const Text('Salary Type'),
+              items: DataConstants.salaryType.map<DropdownMenuItem<String>>((
+                e,
+              ) {
+                return DropdownMenuItem<String>(value: e, child: Text(e));
+              }).toList(),
               onChanged: (value) {},
             ),
 
@@ -60,7 +57,7 @@ class AddSalaryScreen extends StatelessWidget {
             // Button
             ButtonWidget(
               btnText: 'Add',
-              btnColor: AppColors.primaryColor,
+              btnColor: AppColors.primary,
               btnAction: () {
                 // todo: add salary function
               },
